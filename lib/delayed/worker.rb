@@ -271,7 +271,7 @@ module Delayed
       _l = Logger.new(File.join(ENV["HOME"], "delayed_dummy_log.log"))
       _l.info(text)
       if logger
-        _.info(logger.class.to_s)
+        _l.info(logger.class.to_s)
       end
       return unless logger
       # TODO: Deprecate use of Fixnum log levels
