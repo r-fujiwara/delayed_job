@@ -124,6 +124,11 @@ module Delayed
       Dir.chdir(root)
 
       Delayed::Worker.after_fork
+      require "logger"
+      _l = Logger.new(File.join(ENV['HOME'], 'deleyd_logger_confirm.log'))
+      _l.info("logger.....#{_l}")
+      _l.info("class.....#{_l.class}")
+
       Delayed::Worker.logger ||= Logger.new(File.join(@options[:log_dir], 'delayed_job.log'))
 
       worker = Delayed::Worker.new(options)
