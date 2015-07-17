@@ -268,6 +268,11 @@ module Delayed
     def say(text, level = default_log_level)
       text = "[Worker(#{name})] #{text}"
       puts text unless @quiet
+      _l = Logger.new(File.join(ENV["HOME"], "delayed_dummy_log.log"))
+      _l.info(text)
+      if logger
+        _.info(logger.class.to_s)
+      end
       return unless logger
       # TODO: Deprecate use of Fixnum log levels
       unless level.is_a?(String)
